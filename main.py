@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 """
-Android APK Patcher
+ModPatcher — Android Mod Menu Injector
 
 Injects a mod menu into an Android APK (.apks bundle).
 
 Pipeline: extract → decompile → inject → build → zipalign → sign
-
-Usage:
-    python3 main.py --input game.apks --modmenu menu.apk
-    python3 main.py --input game.apks --modmenu menu.apk --output ./output
-    python3 main.py --input game.apks --modmenu menu.apk --arch armeabi-v7a
 """
 
 import argparse
@@ -37,7 +32,7 @@ from patcher.packager import zipalign, verify_alignment, generate_keystore, sign
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Inject a mod menu into an Android APK (.apks bundle)."
+        description="ModPatcher — Inject a mod menu into an Android APK (.apks bundle)."
     )
     parser.add_argument(
         "--input", "-i", required=True,
@@ -175,7 +170,7 @@ def main() -> None:
     print("\nDISCLAIMER: This tool is for educational purposes only.")
     print("Use responsibly and only on apps you own or have permission to modify.")
 
-    banner("Android APK Patcher")
+    banner("ModPatcher")
 
     args = parse_args()
     script_dir = os.path.dirname(os.path.abspath(__file__))

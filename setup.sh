@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# APK Patcher — Dependency Setup Script
+# ModPatcher — Dependency Setup Script
 # Installs required tools and Python packages.
 # Supports: Ubuntu/Debian, Arch, macOS (Homebrew)
 
@@ -132,7 +132,7 @@ check_android_sdk() {
 
 main() {
     echo "============================================"
-    echo "  APK Patcher — Setup"
+    echo "  ModPatcher — Setup"
     echo "============================================"
     echo ""
 

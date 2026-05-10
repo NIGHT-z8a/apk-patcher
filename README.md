@@ -1,4 +1,4 @@
-# APK Patcher
+# ModPatcher
 
 > **Disclaimer:** This project is for **educational and research purposes only**. It demonstrates how Android APK modification works, including decompilation, smali injection, zipalign, and signing. Use this tool responsibly and only on applications you own or have explicit permission to modify. The authors are not responsible for any misuse of this software.
 

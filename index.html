@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModPatcher — Android Mod Menu Injector</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Automated tool to inject mod menus into Android APKs. Supports .apk and .apks bundles.">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <span class="logo-icon">&#9881;</span> ModPatcher
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#quick-start">Quick Start</a>
+                <a href="https://github.com/NIGHT-z8a/apk-patcher" class="btn-github" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Automated Android<br><span class="accent">ModPatcher</span></h1>
+            <p class="hero-sub">Extract, inject, rebuild, and sign Android APKs with a single command.<br>Supports both <code>.apk</code> and <code>.apks</code> bundles.</p>
+            <div class="hero-actions">
+                <a href="#quick-start" class="btn btn-primary">Get Started</a>
+                <a href="https://github.com/NIGHT-z8a/apk-patcher" class="btn btn-secondary" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#128230;</div>
+                    <h3>Bundle Support</h3>
+                    <p>Extracts <code>.apks</code> bundles, merges split APK native libraries into a single installable APK.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128295;</div>
+                    <h3>Smali Injection</h3>
+                    <p>Automatically injects mod menu hooks into the game's main activity onCreate method.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128274;</div>
+                    <h3>APK Signing</h3>
+                    <p>Signs with apksigner v2/v3 scheme, preserving zipalign alignment for Android 11+ compatibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128208;</div>
+                    <h3>Zipalign</h3>
+                    <p>Properly aligns uncompressed files (.arsc, .so) to 4-byte boundaries for optimal performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#9889;</div>
+                    <h3>CLI Arguments</h3>
+                    <p>Full control via command line: input, output, architecture, library name, SDK path, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#127919;</div>
+                    <h3>Auto SDK Detection</h3>
+                    <p>Finds apksigner via ANDROID_HOME, ANDROID_SDK_ROOT, or common system paths automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="pipeline">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="pipeline-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Extract</h4>
+                    <p>Unzips .apks bundle or uses .apk directly</p>
+                </div>
+                <div class="step-arrow">&#8594;</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Decompile</h4>
+                    <p>Uses apktool to decompile both APKs</p>
+                </div>
+                <div class="step-arrow">&#8594;</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Inject</h4>
+                    <p>Copies smali files, .so libs, and hooks</p>
+                </div>
+                <div class="step-arrow">&#8594;</div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Build</h4>
+                    <p>Rebuilds the modified APK with apktool</p>
+                </div>
+                <div class="step-arrow">&#8594;</div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Zipalign</h4>
+                    <p>Aligns uncompressed files to 4-byte boundary</p>
+                </div>
+                <div class="step-arrow">&#8594;</div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h4>Sign</h4>
+                    <p>Signs with apksigner v2/v3 scheme</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section id="quick-start" class="quick-start">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">Terminal</span>
+                    <button class="copy-btn" onclick="copyCode()">Copy</button>
+                </div>
+                <pre><code id="code-content"># Clone the repository
+git clone https://github.com/NIGHT-z8a/apk-patcher.git
+cd apk-patcher
+
+# Install dependencies
+bash setup.sh
+
+# Run with a regular APK
+python3 main.py --input game.apk --modmenu app-debug.apk
+
+# Run with a split APK bundle
+python3 main.py --input game.apks --modmenu app-debug.apk
+
+# With custom options
+python3 main.py -i game.apks -m menu.apk -o ./output -a armeabi-v7a</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="disclaimer">
+        <div class="container">
+            <h2 class="section-title">Disclaimer</h2>
+            <p>This project is for <strong>educational and research purposes only</strong>. It demonstrates how Android APK modification works, including decompilation, smali injection, zipalign, and signing. Use this tool responsibly and only on applications you own or have explicit permission to modify.</p>
+            <p>The authors are not responsible for any misuse of this software.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Licensed under <a href="https://github.com/NIGHT-z8a/apk-patcher/blob/master/LICENSE" target="_blank">GPL-3.0</a></p>
+            <p class="copyright">&copy; 2026 <a href="https://github.com/NIGHT-z8a" target="_blank">NIGHT-z8a</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode() {
+            const code = document.getElementById('code-content').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
