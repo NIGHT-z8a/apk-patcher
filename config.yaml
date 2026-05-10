@@ -1,0 +1,76 @@
+# ─── APK Patcher Configuration ──────────────────────────────────────────────
+# Paths here are relative to the project root or absolute.
+# Override any value via CLI arguments when running main.py.
+
+# Input files (defaults, overridden by --input and --modmenu)
+apks_path: ""
+modmenu_apk: ""
+
+# Output
+output_dir: "./output"
+output_filename: "ModMenu.apk"
+
+# Signing
+keystore:
+  path: "modmenu.keystore"
+  alias: "modmenu"
+  password: "modmenu123"
+  validity_days: 10000
+  dn: "CN=ModMenu, OU=ModMenu, O=ModMenu, L=Unknown, S=Unknown, C=US"
+
+# Mod menu library
+native_lib: "libMyLibName.so"
+native_arch: "arm64-v8a"
+
+# Smali hook template (relative to project root)
+hook:
+  template: "templates/hooks/modmenu.smali"
+  detection_pattern: "com/android/support/Main.*->Start"
+
+# Manifest modifications
+manifest:
+  remove_attributes:
+    - "android:requiredSplitTypes"
+    - "android:splitTypes"
+  add_permissions:
+    - "android.permission.SYSTEM_ALERT_WINDOW"
+  add_service:
+    name: "com.android.support.Launcher"
+    enabled: true
+    exported: false
+    stopWithTask: true
+
+# Zipalign
+zipalign:
+  alignment: 4
+  uncompressed_extensions:
+    - ".arsc"
+    - ".png"
+    - ".so"
+    - ".ogg"
+    - ".mp3"
+    - ".gif"
+    - ".wav"
+    - ".mid"
+    - ".amr"
+    - ".ttf"
+    - ".otf"
+    - ".db"
+    - ".dex"
+
+# Critical files to verify alignment for
+verify_alignment:
+  - "resources.arsc"
+
+# Android SDK (auto-detected if empty)
+android_sdk:
+  build_tools_versions:
+    - "37.0.0"
+    - "36.1.0"
+    - "35.0.0"
+    - "34.0.0"
+    - "33.0.0"
+    - "32.0.0"
+    - "31.0.0"
+    - "30.0.0"
+  base_path: ""

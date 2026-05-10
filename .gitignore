@@ -1,0 +1,20 @@
+# Output
+ModeMenuOutpout/
+*.apk
+*.keystore
+
+# Work
+work/
+unsigned.apk
+aligned.apk
+signed.apk
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.idea/
+.vscode/
+*.swp
