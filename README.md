@@ -4,6 +4,10 @@
 
 Automated pipeline to inject a mod menu into an Android APK (.apks bundle).
 
+## Web UI
+
+Try ModPatcher online: [https://night-z8a.github.io/ModPatcher-Web/](https://night-z8a.github.io/ModPatcher-Web/)
+
 ## Pipeline
 
 ```
