@@ -172,6 +172,9 @@ def validate_inputs(paths: dict) -> None:
 
 
 def main() -> None:
+    print("\nDISCLAIMER: This tool is for educational purposes only.")
+    print("Use responsibly and only on apps you own or have permission to modify.")
+
     banner("Android APK Patcher")
 
     args = parse_args()
