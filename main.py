@@ -41,7 +41,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--input", "-i", required=True,
-        help="Path to target .apks bundle or base.apk"
+        help="Path to target .apk or .apks bundle"
     )
     parser.add_argument(
         "--modmenu", "-m", required=True,

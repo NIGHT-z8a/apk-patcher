@@ -14,7 +14,8 @@ extract → decompile → inject → build → zipalign → sign
 # 1. Install dependencies
 bash setup.sh
 
-# 2. Run
+# 2. Run (supports both .apk and .apks)
+python3 main.py --input game.apk --modmenu app-debug.apk
 python3 main.py --input game.apks --modmenu app-debug.apk
 ```
 
@@ -82,7 +83,7 @@ python3 main.py \
 
 | Flag | Short | Required | Default | Description |
 |------|-------|----------|---------|-------------|
-| `--input` | `-i` | Yes | — | Target .apks bundle or base.apk |
+| `--input` | `-i` | Yes | — | Target .apk or .apks bundle |
 | `--modmenu` | `-m` | Yes | — | Mod menu APK (built from source) |
 | `--output` | `-o` | No | `./output` | Output directory |
 | `--output-name` | — | No | `ModMenu.apk` | Output filename |
@@ -113,7 +114,7 @@ python3 main.py \
 
 ## How It Works
 
-1. **Extract** — Unzips the .apks bundle to get `base.apk` and split APK
+1. **Extract** — If `.apks`, extracts bundle to get `base.apk` + split APK. If `.apk`, uses it directly
 2. **Decompile** — Uses apktool to decompile both base APK and mod menu APK
 3. **Inject** — Copies mod menu smali files, .so library, and game native libs
 4. **Hook** — Injects `Main.Start()` call into the game's main activity `onCreate`

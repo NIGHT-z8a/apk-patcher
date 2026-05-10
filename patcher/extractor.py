@@ -1,4 +1,4 @@
-"""Extract .apks bundles and individual APKs."""
+"""Extract .apks bundles and handle individual APKs."""
 
 import os
 import sys
@@ -7,7 +7,16 @@ from patcher.utils import run, ensure_dir, info, error
 
 
 def extract_apks(apks_path: str, work_dir: str) -> tuple[str, str | None]:
-    """Extract an .apks bundle and return (base_apk, split_apk)."""
+    """Extract an .apks bundle or return a regular APK directly.
+
+    Returns (base_apk, split_apk | None).
+    """
+    # Regular APK — use directly, no split APK
+    if apks_path.endswith(".apk") and not apks_path.endswith(".apks"):
+        info(f"Using regular APK (no split bundle)")
+        return apks_path, None
+
+    # .apks bundle — extract
     extracted = os.path.join(work_dir, "extracted")
     ensure_dir(extracted)
 
